@@ -44,17 +44,17 @@ export const CharactersTable = () => {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <div className="p-4 space-y-4  ">
-      <div className="flex justify-between">
+    <div className="p-6 space-y-4 bg-gray-100 min-h-screen">
+      <div className="flex justify-between items-center bg-white p-4 rounded shadow-sm">
         <input
-          placeholder="Search..."
-          className="border p-2 w-75 "
+          placeholder="Search by name or location..."
+          className="border px-3 py-2 rounded w-96"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
 
         <button
-          className="bg-black text-white px-4 py-2"
+          className="bg-black text-white px-6 py-2 rounded hover:bg-gray-800"
           onClick={() => console.log(Array.from(selected))}
         >
           Submit

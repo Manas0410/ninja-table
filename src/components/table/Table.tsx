@@ -18,7 +18,7 @@ export const Table = ({ rows }: Props) => {
   });
 
   return (
-    <div className="border rounded">
+    <div className="border rounded-lg shadow-sm overflow-hidden bg-white">
       <TableHeader />
 
       <div ref={parentRef} className="h-[600px] overflow-auto">

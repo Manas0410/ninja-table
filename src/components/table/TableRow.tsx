@@ -1,5 +1,6 @@
 import type { Character } from "../../types/character.ts";
 import { useCharactersStore } from "../../features/characters/store/character.store";
+import { HealthBadge } from "../ui/HealthBadge.tsx";
 
 export const TableRow = ({
   row,
@@ -9,21 +10,29 @@ export const TableRow = ({
   style: React.CSSProperties;
 }) => {
   const { selected, toggleSelect } = useCharactersStore();
+  const isSelected = selected.has(row.id);
 
   return (
     <div
       style={style}
-      className="grid grid-cols-5 border-b px-2 py-2 items-center"
+      className={`
+        grid grid-cols-5 px-4 py-3 items-center border-b text-sm
+        ${isSelected ? "bg-blue-50" : "odd:bg-white even:bg-gray-50"}
+        hover:bg-blue-100 transition
+      `}
     >
-      <input
-        type="checkbox"
-        checked={selected.has(row.id)}
-        onChange={() => toggleSelect(row.id)}
-      />
-      <div>{row.name}</div>
-      <div>{row.location}</div>
-      <div>{row.health}</div>
-      <div>{row.power}</div>
+      <div className="text-center">
+        <input
+          type="checkbox"
+          checked={isSelected}
+          onChange={() => toggleSelect(row.id)}
+        />
+      </div>
+
+      <div className="font-medium">{row.name}</div>
+      <div className="text-gray-600">{row.location}</div>
+      <HealthBadge health={row.health} />
+      <div className="text-right font-mono">{row.power}</div>
     </div>
   );
 };

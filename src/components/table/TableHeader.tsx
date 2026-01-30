@@ -8,26 +8,29 @@ export const TableHeader = () => {
   const [showFilter, setShowFilter] = useState(false);
 
   return (
-    <div className="grid grid-cols-5 bg-gray-100 px-2 py-2 font-semibold sticky top-0 z-10">
-      <div>Select</div>
+    <div className="grid grid-cols-5 bg-gray-50 border-b px-4 py-3 font-semibold text-sm sticky top-0 z-20">
+      <div className="text-center">Select</div>
       <div>Name</div>
       <div>Location</div>
 
-      {/* Health column */}
       <div className="flex items-center gap-1 relative">
         Health
-        <button onClick={() => setShowFilter((s) => !s)}>
-          <Filter size={16} />
+        <button
+          className="p-1 hover:bg-gray-200 rounded"
+          onClick={() => setShowFilter((s) => !s)}
+        >
+          <Filter size={14} />
         </button>
         {showFilter && <HealthFilter />}
       </div>
 
-      {/* Power column */}
-      <button onClick={toggleSort} className="flex items-center gap-1">
+      <button
+        onClick={toggleSort}
+        className="flex items-center justify-end gap-1"
+      >
         Power
-        {sort === "asc" && <ChevronUp size={16} />}
-        {sort === "desc" && <ChevronDown size={16} />}
-        {!["asc", "desc"].includes(sort ?? "") && <Filter size={16} />}
+        {sort === "asc" && <ChevronUp size={14} />}
+        {sort === "desc" && <ChevronDown size={14} />}
       </button>
     </div>
   );
